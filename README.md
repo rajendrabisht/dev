@@ -2,7 +2,7 @@
 ## Quick Start project for client(react.js with redux) and server (node.js and mongodb)
 
 # Demo link
-http://68.183.95.36:3000/
+http://68.183.95.36:3006/
 
 ```bash
 # Install dependencies for server
