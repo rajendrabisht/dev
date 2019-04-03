@@ -1,12 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const mongodbErrorHandler  = require('mongoose-mongodb-errors')
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path');
 
+
 const users = require('./routes/api/users');
 const customers = require('./routes/api/customer');
+require('express-async-error');
 
+mongoose.plugin(mongodbErrorHandler);
 
 const app = express();
 
@@ -32,6 +36,27 @@ require('./config/passport')(passport);
 // Use Routes
 app.use('/api/users', users);
 app.use('/api/customers', customers);
+
+
+// error for 404
+
+app.use((req,res,next)=>{
+	req.status=404;
+	const error = new Error('Router not found');
+	next(error);
+
+});
+
+// error handler
+
+app.use((error,req,res,next)=>{
+
+	res.status(req.status || 500).send({
+		message:error.message,
+		stack:error
+	})
+
+});
 
 
 

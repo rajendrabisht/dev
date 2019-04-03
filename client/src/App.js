@@ -16,6 +16,7 @@ import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Customer from './components/customer/Customer';
+import Dashboard from './components/dashboard/Dashboard';
 import EditCustomer from './components/edit-credentials/EditCustomer';
 
 import AddCustomer from './components/add-credentials/AddCustomer';
@@ -82,8 +83,13 @@ class App extends Component {
                   component={Customer}
                 />
               </Switch>
-
-             
+			  
+			  <Switch>
+			  <PrivateRoute exact
+			  path="/dashboard"
+			  component={Dashboard}
+			  />
+			  </Switch>
            
               <Route exact path="/not-found" component={NotFound} />
             </div>
